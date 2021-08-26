@@ -4,7 +4,7 @@
   "description": "just takes a tag and adds one. i dunno",
   "main": "main.js",
   "scripts": {
-    "build": "ncc build main.js"
+    "build": "npx @vercel/ncc build main.js -o dist"
   },
   "author": "",
   "license": "ISC",

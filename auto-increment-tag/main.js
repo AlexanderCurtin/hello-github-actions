@@ -4,7 +4,6 @@ const cmd = require('child_process');
 const { getSystemErrorMap } = require('util');
 const github = require('@actions/github');
 const core = require('@actions/core');
-const { context } = require('./dist');
 
 const cmdPromise = (strCmd) => new Promise((res, rej) => {
     cmd.exec(strCmd, (err, stdout, stderr) => {
