@@ -10,4 +10,4 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v1"
       - name: "tag"
-        uses: "auto-increment-tag"
+        uses: "./auto-increment-tag"
