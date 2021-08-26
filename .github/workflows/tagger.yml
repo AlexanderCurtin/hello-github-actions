@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
-        uses: "checkout@v1"
+        uses: "actions/checkout@v1"
       - name: "tag"
         uses: "./auto-increment-tag"
