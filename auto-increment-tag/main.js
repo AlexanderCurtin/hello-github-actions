@@ -17,7 +17,7 @@ const cmdPromise = (strCmd) => new Promise((res,rej) => {
 // We're not skipping this
 const run = async () => {
     core.info('running');
-    await cmdPromise("git fetch --prune --unshallow");
+    //await cmdPromise("git fetch --prune --unshallow");
     const isTagged = await cmdPromise("git describe --exact").then(_ => true).catch(_ => false);
     corel.info(isTagged);
     if(isTagged){
@@ -26,6 +26,7 @@ const run = async () => {
     }
 
     const previousTag = cmdPromise("git describe --tags --abbrev=0").then(x => x.trim());
+    core.info(previousTag);
     const isValidTag = !!previousTag.match(/^\d+(.\d+){2}$/);
     if(!isValidTag){
         throw Error("not valid Tag");
