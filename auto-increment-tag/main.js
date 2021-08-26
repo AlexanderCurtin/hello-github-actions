@@ -46,6 +46,7 @@ const run = async () => {
     const token = core.getInput('git-token');
 
     const octokit = github.getOctokit(token);
+    console.log(github.context.sha);
     await octokit.rest.git.createRef({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
