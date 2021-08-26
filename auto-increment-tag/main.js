@@ -46,4 +46,4 @@ const run = async () => {
     })
 }
 
-run.then(process.exit(0));
+run.then(_ => process.exit(0)).catch(_ => process.exit(1));
