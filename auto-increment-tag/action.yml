@@ -1,0 +1,10 @@
+name: "auto-increment-tag"
+description: "Increment a tag I guess"
+author: "alexander.curtin@temple.edu"
+inputs:
+  git-token:
+    description: "Github token"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"

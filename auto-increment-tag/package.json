@@ -1,0 +1,18 @@
+{
+  "name": "auto-increment-tag",
+  "version": "1.0.0",
+  "description": "just takes a tag and adds one. i dunno",
+  "main": "main.js",
+  "scripts": {
+    "build": "npx @vercel/ncc build src/main.js -o dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.2"
+  }
+}

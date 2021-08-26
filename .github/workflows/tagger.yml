@@ -1,0 +1,21 @@
+name: "Tagging workflow"
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v1"
+      - name: "tag"
+        uses: "./auto-increment-tag"
+        with:
+          git-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: "merge master back to dev"
+        run: |
+          git fetch
+          git checkout develop
+          git merge master
+          git push
