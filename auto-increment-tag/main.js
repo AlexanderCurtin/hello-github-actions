@@ -17,7 +17,7 @@ const cmdPromise = (strCmd) => new Promise((res,rej) => {
 // We're not skipping this
 const run = async () => {
     core.info('running');
-    //await cmdPromise("git fetch --prune --unshallow");
+    await cmdPromise("git fetch --prune --tags");
     const isTagged = await cmdPromise("git describe --exact").then(_ => true).catch(_ => false);
     core.info(isTagged);
     if(isTagged){
