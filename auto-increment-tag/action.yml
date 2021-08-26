@@ -2,7 +2,7 @@ name: "auto-increment-tag"
 description: "Increment a tag I guess"
 author: "alexander.curtin@temple.edu"
 inputs:
-  github-token:
+  git-token:
     name: "Github token"
     required: true
 runs:
