@@ -3,4 +3,4 @@ description: "Increment a tag I guess"
 author: "alexander.curtin@temple.edu"
 runs:
   using: "node12"
-  main: "main.js"
+  main: "dist/main.js"

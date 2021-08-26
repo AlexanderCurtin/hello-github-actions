@@ -23,7 +23,7 @@ const run = async () => {
     }
 
     const previousTag = cmdPromise("git describe --tags --abbrev=0").trim();
-    const isValidTag = !!previousTag.match(/^\d+\(.\d+){2}$/);
+    const isValidTag = !!previousTag.match(/^\d+(.\d+){2}$/);
     if(!isValidTag){
         process.exit(2)
     }
@@ -38,9 +38,7 @@ const run = async () => {
     else {
         x += 1;
     }
-
-    const token = core.getInput('repo-token', {required: true});
-    const client = new Github(token);
+    const client = new github.Github(github.context.github.token);
     await client.git.createRef({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
