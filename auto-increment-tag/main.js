@@ -3,6 +3,7 @@
 const cmd = require('child_process');
 const { getSystemErrorMap } = require('util');
 const github = require('@actions/github');
+const core = require('@actions/core');
 
 const cmdPromise = (strCmd) => new Promise((res,rej) => {
     cmd.exec(strCmd, (err, stdout, stderr) => {
@@ -16,7 +17,7 @@ const cmdPromise = (strCmd) => new Promise((res,rej) => {
 // We're not skipping this
 const run = async () => {
     core.info('running');
-    await cmdPromise("git fetch --prune --unshallow").trim();
+    await cmdPromise("git fetch --prune --unshallow");
     const isTagged = await cmdPromise("git describe --exact").then(_ => true).catch(_ => false);
     corel.info(isTagged);
     if(isTagged){
@@ -24,7 +25,7 @@ const run = async () => {
         process.exit(1)
     }
 
-    const previousTag = cmdPromise("git describe --tags --abbrev=0").trim();
+    const previousTag = cmdPromise("git describe --tags --abbrev=0").then(x => x.trim());
     const isValidTag = !!previousTag.match(/^\d+(.\d+){2}$/);
     if(!isValidTag){
         process.exit(2)
@@ -48,4 +49,8 @@ const run = async () => {
     })
 }
 
-run().then(_ => process.exit(0)).catch(_ => process.exit(1));
+run().then(_ => process.exit(0)).catch(error => {
+    console.error(error);
+    core.error(error);
+    process.exit(1);
+});
