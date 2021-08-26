@@ -42,6 +42,7 @@ const run = async () => {
     }
     else {
         x += 1;
+        z = 0;
     }
     const token = core.getInput('git-token');
 
@@ -52,7 +53,7 @@ const run = async () => {
         repo: github.context.repo.repo,
         ref: `refs/tags/${x}.${y}.${z}`,
         sha: github.context.sha
-    })
+    });
 }
 console.log('cooool!!!!');
 core.info("whaaaaat???");
