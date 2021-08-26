@@ -42,8 +42,10 @@ const run = async () => {
     else {
         x += 1;
     }
-    const client = new github.Github();
-    await client.git.createRef({
+    const token = core.getInput('git-token');
+
+    const octokit = github.getOctokit(token);
+    await octokit.rest.git.createRef({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
         ref: `refs/tags/${x}.${y}.${z}`
