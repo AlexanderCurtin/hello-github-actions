@@ -22,13 +22,13 @@ const run = async () => {
     corel.info(isTagged);
     if(isTagged){
         core.error("This commit is already tagged. Do it manually if need be");
-        process.exit(1)
+        throw Error("Already Tagged");
     }
 
     const previousTag = cmdPromise("git describe --tags --abbrev=0").then(x => x.trim());
     const isValidTag = !!previousTag.match(/^\d+(.\d+){2}$/);
     if(!isValidTag){
-        process.exit(2)
+        throw Error("not valid Tag");
     }
 
     let [x, y, z] = previousTag.split('.').map(x=> parseInt(x,10));
@@ -49,8 +49,4 @@ const run = async () => {
     })
 }
 
-run().then(_ => process.exit(0)).catch(error => {
-    console.error(error);
-    core.error(error);
-    process.exit(1);
-});
+run();
