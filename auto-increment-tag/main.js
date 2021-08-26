@@ -25,7 +25,7 @@ const run = async () => {
         throw Error("Already Tagged");
     }
 
-    const previousTag = cmdPromise("git describe --tags --abbrev=0").then(x => x.trim());
+    const previousTag = await cmdPromise("git describe --tags --abbrev=0").then(x => x.trim());
     core.info(previousTag);
     const isValidTag = !!previousTag.match(/^\d+(.\d+){2}$/);
     if(!isValidTag){
@@ -34,7 +34,7 @@ const run = async () => {
 
     let [x, y, z] = previousTag.split('.').map(x=> parseInt(x,10));
 
-    const isMinorBump = cmdPromise("git log HEAD -n 1  | grep -s '@minor'").then(_ => true).else(_ =>false);
+    const isMinorBump = await cmdPromise("git log HEAD -n 1  | grep -s '@minor'").then(_ => true).else(_ =>false);
 
     if(isMinorBump){
         z += 1;
