@@ -1,0 +1,15 @@
+{
+  "name": "auto-increment-tag",
+  "version": "1.0.0",
+  "description": "just takes a tag and adds one. i dunno",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0"
+  }
+}

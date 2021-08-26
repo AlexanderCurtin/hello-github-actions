@@ -1,0 +1,13 @@
+name: "Tagging workflow"
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: "checkout@v1"
+      - name: "tag"
+        uses: "./auto-increment-tag"
