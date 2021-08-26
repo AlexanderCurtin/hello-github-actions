@@ -55,7 +55,4 @@ const run = async () => {
         sha: github.context.sha
     });
 }
-console.log('cooool!!!!');
-core.info("whaaaaat???");
-core.error("The heck");
 run().catch(err => { core.setFailed(); core.error(err); });
