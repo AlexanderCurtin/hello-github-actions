@@ -9422,9 +9422,9 @@ const run = async () => {
     else {
         x += 1;
     }
-    const token = core.getInput('git-token');
+    //const token = core.getInput('git-token');
 
-    const octokit = github.getOctokit(token);
+    const octokit = github.getOctokit(github.token);
     await octokit.rest.git.createRef({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
