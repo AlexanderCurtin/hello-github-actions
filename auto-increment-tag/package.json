@@ -4,7 +4,7 @@
   "description": "just takes a tag and adds one. i dunno",
   "main": "main.js",
   "scripts": {
-    "build": "ncc build main.js -o dist"
+    "build": "ncc build main.js"
   },
   "author": "",
   "license": "ISC",
