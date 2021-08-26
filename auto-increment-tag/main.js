@@ -4,6 +4,7 @@ const cmd = require('child_process');
 const { getSystemErrorMap } = require('util');
 const github = require('@actions/github');
 const core = require('@actions/core');
+const { context } = require('./dist');
 
 const cmdPromise = (strCmd) => new Promise((res, rej) => {
     cmd.exec(strCmd, (err, stdout, stderr) => {
@@ -48,7 +49,8 @@ const run = async () => {
     await octokit.rest.git.createRef({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
-        ref: `refs/tags/${x}.${y}.${z}`
+        ref: `refs/tags/${x}.${y}.${z}`,
+        sha: github.context.sha
     })
 }
 console.log('cooool!!!!');
