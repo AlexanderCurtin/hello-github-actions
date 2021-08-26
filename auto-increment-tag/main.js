@@ -19,7 +19,7 @@ const run = async () => {
     core.info('running');
     //await cmdPromise("git fetch --prune --unshallow");
     const isTagged = await cmdPromise("git describe --exact").then(_ => true).catch(_ => false);
-    corel.info(isTagged);
+    core.info(isTagged);
     if(isTagged){
         core.error("This commit is already tagged. Do it manually if need be");
         throw Error("Already Tagged");
@@ -52,4 +52,4 @@ const run = async () => {
 console.log('cooool!!!!');
 core.info("whaaaaat???");
 core.error("The heck");
-run();
+run().catch(err => {core.setFailed();core.error(err);});
