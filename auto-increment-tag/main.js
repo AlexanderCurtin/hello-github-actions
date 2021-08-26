@@ -5,9 +5,9 @@ const { getSystemErrorMap } = require('util');
 const github = require('@actions/github');
 const core = require('@actions/core');
 
-const cmdPromise = (strCmd) => new Promise((res,rej) => {
+const cmdPromise = (strCmd) => new Promise((res, rej) => {
     cmd.exec(strCmd, (err, stdout, stderr) => {
-        if(err){
+        if (err) {
             rej(new Error(stderr));
         }
         res(stdout);
@@ -20,7 +20,7 @@ const run = async () => {
     await cmdPromise("git fetch --prune --tags");
     const isTagged = await cmdPromise("git describe --exact").then(_ => true).catch(_ => false);
     core.info(isTagged);
-    if(isTagged){
+    if (isTagged) {
         core.error("This commit is already tagged. Do it manually if need be");
         throw Error("Already Tagged");
     }
@@ -28,21 +28,21 @@ const run = async () => {
     const previousTag = await cmdPromise("git describe --tags --abbrev=0").then(x => x.trim());
     core.info(previousTag);
     const isValidTag = !!previousTag.match(/^\d+(.\d+){2}$/);
-    if(!isValidTag){
+    if (!isValidTag) {
         throw Error("not valid Tag");
     }
 
-    let [x, y, z] = previousTag.split('.').map(x=> parseInt(x,10));
+    let [x, y, z] = previousTag.split('.').map(x => parseInt(x, 10));
 
-    const isMinorBump = await cmdPromise("git log HEAD -n 1  | grep -s '@minor'").then(_ => true).catch(_ =>false);
+    const isMinorBump = await cmdPromise("git log HEAD -n 1  | grep -s '@minor'").then(_ => true).catch(_ => false);
 
-    if(isMinorBump){
+    if (isMinorBump) {
         z += 1;
     }
     else {
         x += 1;
     }
-    const client = new github.Github(github.context.github.token);
+    const client = new github.Github();
     await client.git.createRef({
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
@@ -52,4 +52,4 @@ const run = async () => {
 console.log('cooool!!!!');
 core.info("whaaaaat???");
 core.error("The heck");
-run().catch(err => {core.setFailed();core.error(err);});
+run().catch(err => { core.setFailed(); core.error(err); });
