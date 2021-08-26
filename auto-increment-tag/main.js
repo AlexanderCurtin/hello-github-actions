@@ -48,6 +48,7 @@ const run = async () => {
         ref: `refs/tags/${x}.${y}.${z}`
     })
 }
+console.log('cooool!!!!');
 core.info("whaaaaat???");
 core.error("The heck");
 run();
