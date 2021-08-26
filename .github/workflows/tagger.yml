@@ -17,5 +17,5 @@ jobs:
         run: |
           git fetch
           git checkout develop
-          git merge main
+          git merge origin/main
           git push
