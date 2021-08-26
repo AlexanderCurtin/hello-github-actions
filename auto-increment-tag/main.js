@@ -34,7 +34,7 @@ const run = async () => {
 
     let [x, y, z] = previousTag.split('.').map(x=> parseInt(x,10));
 
-    const isMinorBump = await cmdPromise("git log HEAD -n 1  | grep -s '@minor'").then(_ => true).else(_ =>false);
+    const isMinorBump = await cmdPromise("git log HEAD -n 1  | grep -s '@minor'").then(_ => true).catch(_ =>false);
 
     if(isMinorBump){
         z += 1;
