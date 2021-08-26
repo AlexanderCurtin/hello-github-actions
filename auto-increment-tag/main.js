@@ -15,10 +15,12 @@ const cmdPromise = (strCmd) => new Promise((res,rej) => {
 
 // We're not skipping this
 const run = async () => {
+    core.info('running');
     await cmdPromise("git fetch --prune --unshallow").trim();
     const isTagged = await cmdPromise("git describe --exact").then(_ => true).catch(_ => false);
+    corel.info(isTagged);
     if(isTagged){
-        console.error("This commit is already tagged. Do it manually if need be");
+        core.error("This commit is already tagged. Do it manually if need be");
         process.exit(1)
     }
 
