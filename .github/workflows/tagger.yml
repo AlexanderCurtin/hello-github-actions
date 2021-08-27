@@ -20,4 +20,5 @@ jobs:
           git merge origin/main
           export REPO_BASE=$(git remote -v | head -n 1 | awk '{print $2}' | sed -E 's|^.*//||')
           echo git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@$REPO_BASE
+          echo $GITHUB_ACTOR
           git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@$REPO_BASE
