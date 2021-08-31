@@ -21,3 +21,4 @@ jobs:
           git config --global user.name 'AlexanderCurtin'
           git config --global user.email 'AlexanderCurtin@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push origin develop
