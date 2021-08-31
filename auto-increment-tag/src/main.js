@@ -3,7 +3,7 @@
 const github = require('@actions/github');
 const core = require('@actions/core');
 const cliHelpers = require('./cli-helpers');
-const {bumpVersion, parseVersion, bump} = require('./version.js');
+const { bumpVersion, parseVersion, bump } = require('./version.js');
 
 
 
@@ -11,10 +11,10 @@ const getBumpFromLabels = (labels) => {
     if (labels.includes(bump.major)) {
         return bump.major;
     }
-    if (labels.includes(bump.minor)) {
-        return bump.minor;
+    if (labels.includes(bump.patch)) {
+        return bump.patch;
     }
-    return bump.patch;
+    return bump.minor;
 }
 
 const getLabelsForCommit = async (octokit, commit_sha) => {
